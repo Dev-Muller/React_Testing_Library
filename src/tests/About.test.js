@@ -20,7 +20,7 @@ describe('Teste se a página contém as informações sobre a Pokédex', () => {
     expect(history.location.pathname).toBe('/about');
   });
 
-  it('O primeiro link deve possuir o texto "About"', () => {
+  it('Teste se a página contém a seguinte imagem de uma Pokédex', () => {
     const { history } = renderWithRouter(<App />);
 
     expect(history.location.pathname).toBe('/');
@@ -32,7 +32,9 @@ describe('Teste se a página contém as informações sobre a Pokédex', () => {
     const imgAbout = screen.getByRole('img', {
       name: /pokédex/i,
     });
+
     const imgLink = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+
     expect(imgAbout).toBeInTheDocument();
     expect(imgAbout).toHaveAttribute('src', imgLink);
   });
