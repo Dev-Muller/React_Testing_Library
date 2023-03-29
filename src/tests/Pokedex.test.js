@@ -78,30 +78,22 @@ describe('Teste se o component "Pokedex" funciona corretamente', () => {
       name: /próximo pokémon/i,
     }));
 
+    const nextBtn = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+
+    expect(nextBtn).toBeDefined();
     const charmander = screen.getByText(/charmander/i);
     expect(charmander).toBeInTheDocument();
   });
-  // it('Teste se apenas são exibidos os Pokémon favoritados', () => {
-  //   const { history } = renderWithRouter(<App />);
 
-  // expect(allBtn[0]).not.toHaveAttribute('data-getByTestId', 'pokemon-type-button');
-  //   expect(history.location.pathname).toBe('/');
+  it('Teste se é apenas um Pokémon', () => {
+    const { history } = renderWithRouter(<App />);
 
-  //   userEvent.click(screen.getByRole('link', {
-  //     name: /more details/i,
-  //   }));
+    expect(history.location.pathname).toBe('/');
 
-  //   userEvent.click(screen.getByRole('checkbox', {
-  //     name: /pokémon favoritado\?/i,
-  //   }));
+    const img = screen.getAllByRole('img');
 
-  //   userEvent.click(screen.getByRole('link', {
-  //     name: /favorite pokémon/i,
-  //   }));
-
-  //   // screen.logTestingPlaygroundURL();
-  //   const favoritePikachu = screen.getByText(/pikachu/i);
-
-  //   expect(favoritePikachu).toBeInTheDocument();
-  // });
+    expect(img).toHaveLength(1);
+  });
 });
