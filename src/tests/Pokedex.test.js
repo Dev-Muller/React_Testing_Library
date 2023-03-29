@@ -92,7 +92,33 @@ describe('Teste se o component "Pokedex" funciona corretamente', () => {
       name: /all/i,
     }));
 
-    const Pikachu = screen.getByText(/pikachu/i);
-    expect(Pikachu).toBeInTheDocument();
+    const typeElectric = screen.getAllByText(/electric/i);
+    expect(typeElectric).toHaveLength(2);
+
+    userEvent.click(screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    }));
+
+    const typeFire = screen.getAllByText(/fire/i);
+    expect(typeFire).toHaveLength(2);
+  });
+
+  it('Teste se o botão de filtro funciona corretamente', () => {
+    const { history } = renderWithRouter(<App />);
+
+    expect(history.location.pathname).toBe('/');
+
+    userEvent.click(screen.getByRole('button', {
+      name: /fire/i,
+    }));
+
+    const typeFire = screen.getAllByText(/fire/i);
+    expect(typeFire).toHaveLength(2);
+
+    userEvent.click(screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    }));
+
+    expect(typeFire).toHaveLength(2);
   });
 });
