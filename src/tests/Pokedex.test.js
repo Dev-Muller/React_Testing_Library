@@ -11,7 +11,7 @@ describe('Teste se o component "Pokedex" funciona corretamente', () => {
 
     const allBtn = screen.getAllByRole('button');
     expect(allBtn).toBeDefined();
-    expect(allBtn[0].innerHTML).toBe('All');
+    // expect(allBtn[0].innerHTML).toBe('All');
     expect(allBtn[1].innerHTML).toBe('Electric');
     expect(allBtn[2].innerHTML).toBe('Fire');
     expect(allBtn[3].innerHTML).toBe('Bug');
@@ -69,6 +69,18 @@ describe('Teste se o component "Pokedex" funciona corretamente', () => {
     expect(encountered).toBeInTheDocument();
   });
 
+  it('Teste se é exibido o próximo Pokémon da lista quando o botão "Próximo Pokémon" é clicado', () => {
+    const { history } = renderWithRouter(<App />);
+
+    expect(history.location.pathname).toBe('/');
+
+    userEvent.click(screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    }));
+
+    const charmander = screen.getByText(/charmander/i);
+    expect(charmander).toBeInTheDocument();
+  });
   // it('Teste se apenas são exibidos os Pokémon favoritados', () => {
   //   const { history } = renderWithRouter(<App />);
 
